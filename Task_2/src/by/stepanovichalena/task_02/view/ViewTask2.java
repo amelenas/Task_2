@@ -16,7 +16,7 @@ public class ViewTask2 {
 
         ArrayList<Ball> balls = new ArrayList<>();
 
-        balls.add(new Ball(2.5, "Blue"));
+	balls.add(new Ball(2.5, "Blue"));
         balls.add(new Ball(2.3, "Blue"));
         balls.add(new Ball(0.3, "Red"));
         balls.add(new Ball(1.0, "Green"));
@@ -26,8 +26,8 @@ public class ViewTask2 {
         basket.setBasket(balls);
         ArrayList<Ball> blueBalls = new ArrayList<>(getBallByColor.getGetBallByColor(basket, "blue"));
         System.out.println(blueBalls.size() + " blue balls in the basket");
-        System.out.println("The weight of all balls is " + getSumOfArray.getSum(balls) + " kg");
-        System.out.println("The weight of blue balls is " + getSumOfArray.getSum(blueBalls) + " kg");
+        System.out.println("The weight of all balls is " + getSumOfArray.getSum(balls) + " g");
+        System.out.println("The weight of blue balls is " + getSumOfArray.getSum(blueBalls) + " g");
 
         Collections.sort(balls);
         System.out.println(balls);
