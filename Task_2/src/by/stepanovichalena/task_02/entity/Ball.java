@@ -1,6 +1,8 @@
 package by.stepanovichalena.task_02.entity;
 
 
+import by.stepanovichalena.task_02.exception.BasketBallException;
+
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -8,13 +10,16 @@ public class Ball implements Serializable, Comparable<Ball> {
     @Serial
     private static final long serialVersionUID = 123546564656889L;
 
-    private Double weight;
+    private double weight;
     private String color;
 
     public Ball() {
     }
 
-    public Ball(double weight, String color) {
+    public Ball(double weight, String color) throws BasketBallException {
+        if (weight <= 0 || color == null) {
+            throw new BasketBallException("The weight cannot be less than or equal to 0!");
+        }
         this.weight = weight;
         this.color = color;
     }
@@ -27,12 +32,18 @@ public class Ball implements Serializable, Comparable<Ball> {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(double weight) throws BasketBallException {
+        if (weight <= 0) {
+            throw new BasketBallException("The weight cannot be less than or equal to 0!");
+        }
         this.weight = weight;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+
+    public void setColor(String color) throws BasketBallException {
+        if (color == null) {
+            throw new BasketBallException("The weight cannot be less than or equal to 0!");
+        }this.color = color;
     }
 
 
@@ -50,7 +61,7 @@ public class Ball implements Serializable, Comparable<Ball> {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + weight.hashCode();
+        result = prime * result + Double.hashCode(weight);
         result = prime * result + color.hashCode();
         return result;
     }

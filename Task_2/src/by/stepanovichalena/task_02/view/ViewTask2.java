@@ -2,34 +2,31 @@ package by.stepanovichalena.task_02.view;
 
 import by.stepanovichalena.task_02.entity.Ball;
 import by.stepanovichalena.task_02.entity.Basket;
-import by.stepanovichalena.task_02.logic.GetBallByColor;
-import by.stepanovichalena.task_02.logic.GetSumOfArray;
+import by.stepanovichalena.task_02.exception.BasketBallException;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class ViewTask2 {
     public static void main(String[] args) {
         Basket basket = new Basket();
-        GetBallByColor getBallByColor = new GetBallByColor();
-        GetSumOfArray getSumOfArray = new GetSumOfArray();
-
         ArrayList<Ball> balls = new ArrayList<>();
 
-	balls.add(new Ball(2.5, "Blue"));
-        balls.add(new Ball(2.3, "Blue"));
-        balls.add(new Ball(0.3, "Red"));
-        balls.add(new Ball(1.0, "Green"));
-        balls.add(new Ball(0.9, "Yellow"));
-        balls.add(new Ball(2.1, "Blue"));
+        try {
+            balls.add(new Ball(0.5, "Blue"));
+            balls.add(new Ball(0.3, "Blue"));
+            balls.add(new Ball(0.2, "Red"));
+            balls.add(new Ball(0.1, "Green"));
+            balls.add(new Ball(0.09, "Yellow"));
+            balls.add(new Ball(0.12, "Blue"));
 
-        basket.setBasket(balls);
-        ArrayList<Ball> blueBalls = new ArrayList<>(getBallByColor.getGetBallByColor(basket, "blue"));
-        System.out.println(blueBalls.size() + " blue balls in the basket");
-        System.out.println("The weight of all balls is " + getSumOfArray.getSum(balls) + " g");
-        System.out.println("The weight of blue balls is " + getSumOfArray.getSum(blueBalls) + " g");
+            basket.setBasket(balls);
+            System.out.println(basket.amountOfBallsByColor("Blue") + " blue balls in the basket");
+            System.out.println("The weight of all balls is " + basket.sumOfBalls() + " g");
+            System.out.println("The weight of blue balls is " + basket.sumByColor("Blue") + " g");
 
-        Collections.sort(balls);
-        System.out.println(balls);
+        } catch (BasketBallException ex) {
+            ex.printStackTrace();
+        }
+
     }
 }
