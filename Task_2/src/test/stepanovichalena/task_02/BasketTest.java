@@ -28,7 +28,7 @@ public class BasketTest {
 
     @Test (expected = BasketBallException.class)
     public void setNullParameters() throws BasketBallException {
-       Ball ball = new Ball(0, null);
+        new Ball(0, null);
     }
 
     @Test
@@ -68,7 +68,7 @@ public class BasketTest {
         balls.add(new Ball(0.3, "Blue"));
         balls.add(new Ball(0.12, "Blue"));
         basket3.setBasket(balls);
-        assertTrue(basket2.equals(basket3));
+        assertEquals(basket2, basket3);
     }
 
     @Test

@@ -21,7 +21,7 @@ public class Basket implements Serializable {
 
     public void setBasket(ArrayList<Ball> basket) throws BasketBallException {
         if (basket == null) {
-            throw new BasketBallException("The basket is empty!");
+            throw new BasketBallException("The basket can't be null");
         }
         this.basket = basket;
     }
@@ -32,7 +32,7 @@ public class Basket implements Serializable {
     }
 
     public boolean basketContains(Ball ball) {
-        boolean result =false;
+        boolean result = false;
         if (ball != null) {
             for (Ball s : getBasket()) {
                 if (ball.equals(s)) {

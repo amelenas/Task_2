@@ -10,6 +10,8 @@ public class Ball implements Serializable, Comparable<Ball> {
     @Serial
     private static final long serialVersionUID = 123546564656889L;
 
+    private final String message = "The weight cannot be less than or equal to 0!";
+
     private double weight;
     private String color;
 
@@ -17,8 +19,11 @@ public class Ball implements Serializable, Comparable<Ball> {
     }
 
     public Ball(double weight, String color) throws BasketBallException {
-        if (weight <= 0 || color == null) {
-            throw new BasketBallException("The weight cannot be less than or equal to 0!");
+        if (weight <= 0) {
+            throw new BasketBallException(message);
+        }
+        if (color == null) {
+            throw new BasketBallException("The color cannot be null!");
         }
         this.weight = weight;
         this.color = color;
@@ -34,7 +39,7 @@ public class Ball implements Serializable, Comparable<Ball> {
 
     public void setWeight(double weight) throws BasketBallException {
         if (weight <= 0) {
-            throw new BasketBallException("The weight cannot be less than or equal to 0!");
+            throw new BasketBallException(message);
         }
         this.weight = weight;
     }
@@ -42,10 +47,10 @@ public class Ball implements Serializable, Comparable<Ball> {
 
     public void setColor(String color) throws BasketBallException {
         if (color == null) {
-            throw new BasketBallException("The weight cannot be less than or equal to 0!");
-        }this.color = color;
+            throw new BasketBallException(message);
+        }
+        this.color = color;
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -56,13 +61,12 @@ public class Ball implements Serializable, Comparable<Ball> {
         return getWeight().equals(ball1.getWeight()) && getColor().equals(ball1.getColor());
     }
 
-
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + Double.hashCode(weight);
-        result = prime * result + color.hashCode();
+        result = prime * result + ((color == null) ? 0 : color.hashCode());
         return result;
     }
 
@@ -73,7 +77,6 @@ public class Ball implements Serializable, Comparable<Ball> {
                 ", color='" + color + '\'' +
                 '}';
     }
-
 
     @Override
     public int compareTo(Ball o) {
